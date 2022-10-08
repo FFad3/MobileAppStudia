@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MobileAppStudia"
+             x:Class="MobileAppStudia.WorksTaskPage">
+    <StackLayout BackgroundColor="#7bc795">
+        <Frame BackgroundColor="#4eba66" Margin="4" Padding="12" CornerRadius="9">
+            <Label Text="Welcome in ToDo's" HorizontalTextAlignment="Center" TextColor="#5c800e" FontSize="22" />
+        </Frame>
+        <Label Text="This is your Tasks:"></Label>
+        <ListView ItemsSource="{Binding WorkTaskList}"
+                  SelectedItem="{Binding SelectedTask,Mode=TwoWay}"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  HeightRequest="300">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:WorkTask />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Text="Task Title:"></Label>
+        <Entry Text="{Binding NewWorkTaskTitle,Mode=TwoWay}" />
+        <Label Text="Description:"></Label>
+        <Entry Text="{Binding NewWorkTaskDescription,Mode=TwoWay}" />
+        <Grid Padding="14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding AddNewTaskCommand}" BackgroundColor="#0a8f17" Text="Add" TextColor="#0ff225" CornerRadius="9" BorderColor="#0ff225" BorderWidth="1" />
+            <Button Command="{Binding UpdateSelectedWorkTaskCommand}" BackgroundColor="CornflowerBlue" Grid.Column="1" Text="Update" TextColor="AliceBlue" CornerRadius="9" BorderColor="AliceBlue" BorderWidth="1" />
+            <Button Command="{Binding DeleteSelectedTasksCommand}" BackgroundColor="#c72b0c" Grid.Column="2" Text="Delete" TextColor="#fa0000" CornerRadius="9" BorderColor="#fa0000" BorderWidth="1" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

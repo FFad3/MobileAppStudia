@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ToDoList.Core.Helpers;
+using ToDoList.Database;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MobileAppStudia
 {
@@ -9,12 +9,16 @@ namespace MobileAppStudia
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            var database = new ToDoListDbContext();
+            database.Database.EnsureDeleted();
+            database.Database.EnsureCreated();
+            DataBaseLocator.Database = database;
+            MainPage = new WorksTaskPage();
         }
 
         protected override void OnStart()
         {
+            base.OnStart();
         }
 
         protected override void OnSleep()
